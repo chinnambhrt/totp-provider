@@ -6,6 +6,8 @@ import org.junit.Test;
 import com.kraftsix.auth.core.HashAlgorithm;
 import com.kraftsix.auth.iface.IOtpProvider;
 
+import java.time.Instant;
+
 
 /**
  * Unit test for simple App.
@@ -39,11 +41,11 @@ public class AppTest
 
         IOtpProvider provider = new TotpProvider();
 
-        String otp=provider.getOtp(6, Instant.now().getEpochSecond(),"nofun",30, HashAlgorithm.SHA_1);
+        String otp=provider.getOtp(6, 1702023397L,"nofun",30, HashAlgorithm.SHA_1);
 
-        System.out.println(otp);
+//        System.out.println(now+":"+otp);
 
-        //assertTrue("312685".equals(otp));
+        assertTrue("230514".equals(otp));
 
     }
 
