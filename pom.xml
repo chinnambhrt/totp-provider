@@ -93,4 +93,13 @@
       </plugins>
     </pluginManagement>
   </build>
+
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Chinnambhrt totp-provider Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/chinnambhrt/totp-provider</url>
+    </repository>
+  </distributionManagement>
+
 </project>
