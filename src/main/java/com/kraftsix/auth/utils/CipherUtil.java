@@ -1,6 +1,8 @@
 package com.kraftsix.auth.utils;
 
 import com.kraftsix.auth.core.HashAlgorithm;
+import com.kraftsix.auth.core.PasswordCharacterSet;
+
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.lang.reflect.UndeclaredThrowableException;
@@ -12,7 +14,7 @@ import java.util.Date;
 
 public class CipherUtil {
 
-    private static final String ALPHABET_SPECIAL = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+";
+    private static final String ALPHABET_SPECIAL = "";
 
     private static final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-_=+";
 
@@ -21,14 +23,12 @@ public class CipherUtil {
     /**
      * Generate random password/string of specified bytes
      * @param length length of string in bytes
-     * @param specialCharacters boolean indicating whether to include special characters
+     * @param characterSet character set that needs to be used
      * @return String with given length
      */
-    public String generateRandomPassword(int length,boolean specialCharacters){
+    public String generateRandomPassword(int length, PasswordCharacterSet characterSet){
 
-        String character_set = specialCharacters?ALPHABET_SPECIAL:ALPHABET;
-
-        int target_bytes = (length*2);
+        String character_set = characterSet.getCharset();
 
         SecureRandom random = new SecureRandom((""+new Date().getTime()).getBytes());
 
@@ -36,7 +36,7 @@ public class CipherUtil {
 
         int bound = character_set.length();
 
-        for(int i=0;i<target_bytes;i++){
+        for(int i = 0; i< (length); i++){
 
             int idx = Math.abs(random.nextInt()) % bound;
 
@@ -54,7 +54,7 @@ public class CipherUtil {
      * @return String with given length
      */
     public String generateRandomPassword(int length){
-        return  generateRandomPassword(length,false);
+        return  generateRandomPassword(length,PasswordCharacterSet.ALPHABET);
     }
 
 
@@ -63,8 +63,8 @@ public class CipherUtil {
      * @param algorithm HashAlgorithm {@link HashAlgorithm} for which key has to be generated
      * @return A random key suitable for generating SHA
      */
-    public String generateRandomKeyFor(HashAlgorithm algorithm){
-        return generateRandomPassword(algorithm.getKeyLength());
+    public String generateRandomKeyForOTP(HashAlgorithm algorithm){
+        return generateRandomPassword(algorithm.getKeyLength(), PasswordCharacterSet.ALPHABET_BASE32);
     }
 
 

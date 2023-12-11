@@ -11,7 +11,7 @@ public class TotpProvider implements IOtpProvider {
 
     private final CipherUtil cipherUtil = new CipherUtil();
 
-    private  final HashAlgorithm DEFAULT_ALGORITHM = HashAlgorithm.SHA_512;
+    private  final HashAlgorithm DEFAULT_ALGORITHM = HashAlgorithm.SHA_1;
 
     private  final int DEFAULT_WINDOW = 30;
 

@@ -1,6 +1,8 @@
 package com.kraftsix.auth;
 
 import static org.junit.Assert.assertTrue;
+
+import com.kraftsix.auth.qr.DefaultQRGenerator;
 import org.junit.Test;
 
 import com.kraftsix.auth.core.HashAlgorithm;
@@ -46,6 +48,32 @@ public class AppTest
 //        System.out.println(now+":"+otp);
 
         assertTrue("230514".equals(otp));
+
+    }
+
+    @Test
+    public void generateTotp3(){
+
+        String key = "nofun";
+
+        IOtpProvider provider = new TotpProvider();
+
+        String otp=provider.getOtp(6, Instant.now().getEpochSecond(), key,30, HashAlgorithm.SHA_1);
+
+        System.out.println("Epoch:"+otp);
+
+//        assertTrue("230514".equals(otp));
+
+    }
+
+    @Test
+    public void generateQR(){
+
+        String otpauth_url = "otpauth://totp/kraftsix%20com:chinnambhrt?secret=RA37PQXYKDEUPYJ4B45M&issuer=kraftsix%20com&algorithm=SHA1&digits=6&period=30";
+
+        DefaultQRGenerator generator = new DefaultQRGenerator();
+
+        String base64 = generator.createQR(otpauth_url);
 
     }
 
