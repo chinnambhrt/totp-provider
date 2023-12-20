@@ -54,11 +54,11 @@ public class AppTest
     @Test
     public void generateTotp3(){
 
-        String key = "nofun";
+        String key = "ZUYFPVUOK4OFHRS52CG3";
 
         IOtpProvider provider = new TotpProvider();
 
-        String otp=provider.getOtp(6, Instant.now().getEpochSecond(), key,30, HashAlgorithm.SHA_1);
+        String otp=provider.getOtp(6, 1702438009L, key,30, HashAlgorithm.SHA_1);
 
         System.out.println("Epoch:"+otp);
 

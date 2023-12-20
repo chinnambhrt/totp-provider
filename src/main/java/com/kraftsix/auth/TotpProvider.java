@@ -48,7 +48,7 @@ public class TotpProvider implements IOtpProvider {
 
     @Override
     public String getOtp(int digits, Long time, String key, int windowSize) {
-       return getOtp(digits,time,key,windowSize,DEFAULT_ALGORITHM);
+        return getOtp(digits,time,key,windowSize,DEFAULT_ALGORITHM);
     }
 
     @Override
