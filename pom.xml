@@ -6,7 +6,7 @@
 
   <groupId>com.kraftsix.auth</groupId>
   <artifactId>totp-provider</artifactId>
-  <version>1.0.2-SNAPSHOT</version>
+  <version>1.0.2</version>
 
 
   <name>totp-provider</name>
